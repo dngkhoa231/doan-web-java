@@ -34,7 +34,7 @@ Website Quản lý Sinh viên hỗ trợ Giảng viên trong việc theo dõi, t
 ## 5. Hướng dẫn cài đặt
 1. Clone project từ GitHub về máy: `git clone https://github.com/dngkhoa231/doan-web-java.git`
 2. Mở thư mục project bằng IDE (Visual Studio Code, Eclipse hoặc IntelliJ).
-3. Mở phần mềm quản lý MySQL (VD: XAMPP - phpMyAdmin), import file `database.sql` để tạo CSDL `student_management`.
+3. Mở phần mềm quản lý MySQL (VD: XAMPP - phpMyAdmin), import file `database/database.sql` để tạo CSDL `student_management`.
 4. Nếu MySQL của bạn có cài mật khẩu, vui lòng cấu hình lại mật khẩu trong file `src/main/java/com/studentmvc/util/DBConnection.java`. (Mặc định tài khoản là `root`, mật khẩu để trống).
 5. Chạy lệnh `mvn clean package` để build project.
 6. **Cấu hình Server Tomcat và Chạy Project:**
