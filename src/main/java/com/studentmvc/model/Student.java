@@ -11,6 +11,7 @@ public class Student {
     private String major;
     private String className;
     private String password;
+    private double fee; // Thêm học phí
 
     public Student() {}
 
@@ -23,12 +24,31 @@ public class Student {
         this.major = major;
     }
 
+    public Student(int id, String studentCode, String name, String email, Date dob, String major, double fee) {
+        this.id = id;
+        this.studentCode = studentCode;
+        this.name = name;
+        this.email = email;
+        this.dob = dob;
+        this.major = major;
+        this.fee = fee;
+    }
+
     public Student(String studentCode, String name, String email, Date dob, String major) {
         this.studentCode = studentCode;
         this.name = name;
         this.email = email;
         this.dob = dob;
         this.major = major;
+    }
+
+    public Student(String studentCode, String name, String email, Date dob, String major, double fee) {
+        this.studentCode = studentCode;
+        this.name = name;
+        this.email = email;
+        this.dob = dob;
+        this.major = major;
+        this.fee = fee;
     }
 
     public int getId() { return id; }
@@ -47,4 +67,6 @@ public class Student {
     public void setClassName(String className) { this.className = className; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    public double getFee() { return fee; }
+    public void setFee(double fee) { this.fee = fee; }
 }

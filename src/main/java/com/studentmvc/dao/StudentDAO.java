@@ -23,7 +23,8 @@ public class StudentDAO {
                 String email = rs.getString("email");
                 Date dob = rs.getDate("dob");
                 String major = rs.getString("major");
-                Student s = new Student(id, studentCode, name, email, dob, major);
+                double fee = rs.getDouble("fee");
+                Student s = new Student(id, studentCode, name, email, dob, major, fee);
                 s.setClassName(rs.getString("class_name"));
                 students.add(s);
             }
@@ -47,7 +48,8 @@ public class StudentDAO {
                     String email = rs.getString("email");
                     Date dob = rs.getDate("dob");
                     String major = rs.getString("major");
-                    Student s = new Student(id, studentCode, name, email, dob, major);
+                    double fee = rs.getDouble("fee");
+                    Student s = new Student(id, studentCode, name, email, dob, major, fee);
                     s.setClassName(rs.getString("class_name"));
                     students.add(s);
                 }
@@ -73,7 +75,8 @@ public class StudentDAO {
                     String email = rs.getString("email");
                     Date dob = rs.getDate("dob");
                     String major = rs.getString("major");
-                    Student s = new Student(id, studentCode, name, email, dob, major);
+                    double fee = rs.getDouble("fee");
+                    Student s = new Student(id, studentCode, name, email, dob, major, fee);
                     s.setClassName(rs.getString("class_name"));
                     students.add(s);
                 }
@@ -97,7 +100,8 @@ public class StudentDAO {
                 String email = rs.getString("email");
                 Date dob = rs.getDate("dob");
                 String major = rs.getString("major");
-                student = new Student(id, studentCode, name, email, dob, major);
+                double fee = rs.getDouble("fee");
+                student = new Student(id, studentCode, name, email, dob, major, fee);
                 student.setClassName(rs.getString("class_name"));
             }
         } catch (SQLException e) {
@@ -107,7 +111,7 @@ public class StudentDAO {
     }
 
     public void insertStudent(Student student) throws SQLException {
-        String sql = "INSERT INTO students (student_code, name, email, dob, major, class_name) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO students (student_code, name, email, dob, major, class_name, fee) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, student.getStudentCode());
@@ -116,13 +120,14 @@ public class StudentDAO {
             pstmt.setDate(4, student.getDob());
             pstmt.setString(5, student.getMajor());
             pstmt.setString(6, student.getClassName());
+            pstmt.setDouble(7, student.getFee());
             pstmt.executeUpdate();
         }
     }
 
     public boolean updateStudent(Student student) throws SQLException {
         boolean rowUpdated;
-        String sql = "UPDATE students SET student_code = ?, name = ?, email = ?, dob = ?, major = ? WHERE id = ?";
+        String sql = "UPDATE students SET student_code = ?, name = ?, email = ?, dob = ?, major = ?, fee = ? WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, student.getStudentCode());
@@ -130,7 +135,8 @@ public class StudentDAO {
             pstmt.setString(3, student.getEmail());
             pstmt.setDate(4, student.getDob());
             pstmt.setString(5, student.getMajor());
-            pstmt.setInt(6, student.getId());
+            pstmt.setDouble(6, student.getFee());
+            pstmt.setInt(7, student.getId());
             rowUpdated = pstmt.executeUpdate() > 0;
         }
         return rowUpdated;

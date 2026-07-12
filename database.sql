@@ -11,6 +11,7 @@ CREATE TABLE students (
     dob DATE,
     major VARCHAR(100),
     class_name VARCHAR(50),
+    fee DOUBLE DEFAULT 0,
     password VARCHAR(255) DEFAULT 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3' -- Mật khẩu mặc định 123 (mã băm)
 );
 
@@ -26,8 +27,9 @@ CREATE TABLE teachers (
 
 INSERT INTO teachers (teacher_code, name, password, manage_class) VALUES
 ('GV001', 'Nguyễn Duy Tân', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'CT07'),
+('GV002', 'Nguyễn Văn A', SHA2('admin@2024', 256), 'CT08');
 
 INSERT INTO students (student_code, name, email, dob, major, class_name, password) VALUES
-('2305CT0517', 'Hồ Đăng Khoa', 'dngkhoa231@gmail.com', '2005-01-23', 'CNTT', 'CT07', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3'),
+('2305CT0517', 'Hồ Đăng Khoa', 'dngkhoa231@gmail.com', '2005-01-23', 'CNTT', 'CT07', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3');
 
 

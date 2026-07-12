@@ -48,6 +48,11 @@
                 <input type="text" id="major" name="major" value="<c:out value='${student.major}' />">
             </div>
 
+            <div class="form-group">
+                <label for="fee">Học phí:</label>
+                <input type="number" step="0.01" id="fee" name="fee" value="<c:out value='${student.fee}' />">
+            </div>
+
             <div style="margin-top: 2rem;">
                 <button type="submit" class="btn btn-primary">Lưu thông tin</button>
                 <a href="students" class="btn btn-danger" style="margin-left: 10px;">Hủy bỏ</a>

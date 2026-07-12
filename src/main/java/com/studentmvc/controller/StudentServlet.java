@@ -109,8 +109,10 @@ public class StudentServlet extends HttpServlet {
         String dobStr = request.getParameter("dob");
         Date dob = (dobStr != null && !dobStr.isEmpty()) ? Date.valueOf(dobStr) : null;
         String major = request.getParameter("major");
+        String feeStr = request.getParameter("fee");
+        double fee = (feeStr != null && !feeStr.isEmpty()) ? Double.parseDouble(feeStr) : 0;
         
-        Student newStudent = new Student(studentCode, name, email, dob, major);
+        Student newStudent = new Student(studentCode, name, email, dob, major, fee);
         // Tự động gán lớp cho sinh viên này bằng lớp hiện tại
         newStudent.setClassName(className);
         
@@ -136,8 +138,10 @@ public class StudentServlet extends HttpServlet {
         String dobStr = request.getParameter("dob");
         Date dob = (dobStr != null && !dobStr.isEmpty()) ? Date.valueOf(dobStr) : null;
         String major = request.getParameter("major");
+        String feeStr = request.getParameter("fee");
+        double fee = (feeStr != null && !feeStr.isEmpty()) ? Double.parseDouble(feeStr) : 0;
 
-        Student student = new Student(id, studentCode, name, email, dob, major);
+        Student student = new Student(id, studentCode, name, email, dob, major, fee);
         student.setClassName(className);
         try {
             studentDAO.updateStudent(student);

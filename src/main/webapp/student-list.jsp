@@ -46,6 +46,7 @@
                     <th>Email</th>
                     <th>Ngày Sinh</th>
                     <th>Chuyên Ngành</th>
+                    <th>Học phí</th>
                     <th>Lớp</th>
                     <th>Hành động</th>
                 </tr>
@@ -59,6 +60,7 @@
                         <td><c:out value="${student.email}" /></td>
                         <td><c:out value="${student.dob}" /></td>
                         <td><c:out value="${student.major}" /></td>
+                        <td><c:out value="${student.fee}" /></td>
                         <td><c:out value="${student.className}" /></td>
                         <td>
                             <a href="edit?id=<c:out value='${student.id}' />" class="btn btn-primary">Sửa</a>

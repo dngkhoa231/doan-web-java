@@ -30,6 +30,17 @@ public class LoginServlet extends HttpServlet {
         // Băm mật khẩu người dùng nhập vào để so với DB
         String password = HashUtil.hashPassword(rawPassword);
 
+        System.out.println("=========================================");
+        System.out.println("LOGIN REQUEST");
+        System.out.println("Username : " + username);
+        System.out.println("Password : " + rawPassword);
+        System.out.println("=========================================");
+        System.out.println("=========================================");
+        System.out.println("Username       : " + username);
+        System.out.println("Raw Password   : " + rawPassword);
+        System.out.println("SHA256 Hash    : " + password);
+        System.out.println("\nĐang thực hiện truy vấn...");
+
         try (Connection conn = DBConnection.getConnection()) {
             // Kiểm tra Giảng viên trước
             String sqlTeacher = "SELECT * FROM teachers WHERE teacher_code = ? AND password = ?";
@@ -38,6 +49,9 @@ public class LoginServlet extends HttpServlet {
                 ps.setString(2, password);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
+                        System.out.println(">>> LOGIN SUCCESS <<<");
+                        System.out.println(">>> LOGIN SUCCESS <<<");
+                        System.out.println("Insert Result = true");
                         HttpSession session = request.getSession();
                         session.setAttribute("role", "TEACHER");
                         session.setAttribute("name", rs.getString("name"));
@@ -55,6 +69,9 @@ public class LoginServlet extends HttpServlet {
                 ps.setString(2, password);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
+                        System.out.println(">>> LOGIN SUCCESS <<<");
+                        System.out.println(">>> LOGIN SUCCESS <<<");
+                        System.out.println("Insert Result = true");
                         HttpSession session = request.getSession();
                         session.setAttribute("role", "STUDENT");
                         session.setAttribute("name", rs.getString("name"));
