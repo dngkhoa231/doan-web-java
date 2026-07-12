@@ -22,3 +22,6 @@ buildNumber.properties
 *.log
 
 *.class
+
+# Video
+video/*.mp4
