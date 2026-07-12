@@ -9,6 +9,8 @@ public class Student {
     private String email;
     private Date dob;
     private String major;
+    private String className;
+    private String password;
 
     public Student() {}
 
@@ -41,4 +43,8 @@ public class Student {
     public void setDob(Date dob) { this.dob = dob; }
     public String getMajor() { return major; }
     public void setMajor(String major) { this.major = major; }
+    public String getClassName() { return className; }
+    public void setClassName(String className) { this.className = className; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }

@@ -1,23 +1,24 @@
 body {
-    font-family: Tahoma, sans-serif;
-    background-color: #Fdf5e6; /* Old Lace color - vintage feel */
-    color: #4a3b32; /* Dark brown text */
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
     margin: 30px;
 }
 
 .container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 0 auto;
-    background-color: #fff9e6; /* Light yellow background for container */
+    background-color: #ffffff;
     padding: 25px;
-    border: 3px solid #8b5a2b; /* Thick brown border */
-    border-radius: 8px; /* Slightly rounded corners */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 h2 {
-    color: #8b4513; /* Saddle brown header */
+    color: #2c3e50;
     text-transform: uppercase;
-    border-bottom: 2px dashed #cd853f; /* Dashed underline for header */
+    border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
 
@@ -25,11 +26,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #ffffff;
 }
 
 table, th, td {
-    border: 2px solid #a0522d; /* Sienna brown borders for table */
+    border: 1px solid #ddd;
 }
 
 th, td {
@@ -38,9 +38,13 @@ th, td {
 }
 
 th {
-    background-color: #deb887; /* Burlywood color for header background */
-    color: #3e2723;
+    background-color: #3498db;
+    color: #ffffff;
     font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .btn {
@@ -48,25 +52,26 @@ th {
     padding: 8px 15px;
     text-decoration: none;
     color: #ffffff;
-    font-weight: bold;
-    border: 2px solid #3e2723; /* Dark brown border around buttons */
-    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .btn-primary {
-    background-color: #d2691e; /* Chocolate orange button */
+    background-color: #2ecc71;
+    border: 1px solid #27ae60;
 }
 
 .btn-primary:hover {
-    background-color: #a0522d; /* Darker orange on hover */
+    background-color: #27ae60;
 }
 
 .btn-danger {
-    background-color: #800000; /* Maroon red button */
+    background-color: #e74c3c;
+    border: 1px solid #c0392b;
 }
 
 .btn-danger:hover {
-    background-color: #8b0000;
+    background-color: #c0392b;
 }
 
 .form-group {
@@ -77,7 +82,7 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #5c4033;
+    color: #555;
 }
 
 input[type="text"],
@@ -86,9 +91,8 @@ input[type="date"] {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 2px solid #cd853f; /* Peru brown borders for inputs */
-    background-color: #fffaf0;
-    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .header-action {

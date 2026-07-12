@@ -20,3 +20,5 @@ buildNumber.properties
 .classpath
 .settings/
 *.log
+
+*.class

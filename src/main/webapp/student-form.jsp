@@ -50,7 +50,7 @@
 
             <div style="margin-top: 2rem;">
                 <button type="submit" class="btn btn-primary">Lưu thông tin</button>
-                <a href="list" class="btn btn-danger" style="margin-left: 10px;">Hủy bỏ</a>
+                <a href="students" class="btn btn-danger" style="margin-left: 10px;">Hủy bỏ</a>
             </div>
         </form>
     </div>

@@ -32,6 +32,16 @@ public class StudentServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // Kiểm tra xem đã đăng nhập chưa
+        HttpSession session = request.getSession();
+        String role = (String) session.getAttribute("role");
+        String className = (String) session.getAttribute("className");
+        
+        if (role == null) {
+            response.sendRedirect("login");
+            return;
+        }
+
         // Lấy cái đường dẫn người dùng gõ vào
         String action = request.getServletPath();
         
@@ -41,7 +51,7 @@ public class StudentServlet extends HttpServlet {
                     showNewForm(request, response);
                     break;
                 case "/insert":
-                    insertStudent(request, response);
+                    insertStudent(request, response, className);
                     break;
                 case "/delete":
                     deleteStudent(request, response);
@@ -50,10 +60,10 @@ public class StudentServlet extends HttpServlet {
                     showEditForm(request, response);
                     break;
                 case "/update":
-                    updateStudent(request, response);
+                    updateStudent(request, response, className);
                     break;
                 default:
-                    listStudent(request, response);
+                    listStudent(request, response, className);
                     break;
             }
         } catch (SQLException ex) {
@@ -61,10 +71,18 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
-    private void listStudent(HttpServletRequest request, HttpServletResponse response)
+    private void listStudent(HttpServletRequest request, HttpServletResponse response, String className)
             throws SQLException, IOException, ServletException {
-        // Lọi hết sinh viên từ DB ra
-        List<Student> listStudent = studentDAO.selectAllStudents();
+        String major = request.getParameter("major");
+        List<Student> listStudent;
+        
+        if (major != null && !major.isEmpty()) {
+            listStudent = studentDAO.selectAllStudentsByMajor(major);
+        } else {
+            // Lấy TOÀN BỘ sinh viên (như web cũ)
+            listStudent = studentDAO.selectAllStudents();
+        }
+        
         request.setAttribute("listStudent", listStudent);
         // Đẩy dữ liệu sang trang JSP để hiển thị
         request.getRequestDispatcher("student-list.jsp").forward(request, response);
@@ -83,9 +101,8 @@ public class StudentServlet extends HttpServlet {
         request.getRequestDispatcher("student-form.jsp").forward(request, response);
     }
 
-    private void insertStudent(HttpServletRequest request, HttpServletResponse response)
+    private void insertStudent(HttpServletRequest request, HttpServletResponse response, String className)
             throws SQLException, IOException {
-        // Lấy từng thông tin từ các ô input của form HTML
         String studentCode = request.getParameter("studentCode");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -94,11 +111,23 @@ public class StudentServlet extends HttpServlet {
         String major = request.getParameter("major");
         
         Student newStudent = new Student(studentCode, name, email, dob, major);
-        studentDAO.insertStudent(newStudent);
-        response.sendRedirect("list");
+        // Tự động gán lớp cho sinh viên này bằng lớp hiện tại
+        newStudent.setClassName(className);
+        
+        try {
+            studentDAO.insertStudent(newStudent);
+            response.sendRedirect("students");
+        } catch (SQLException e) {
+            if (e.getMessage() != null && e.getMessage().contains("Duplicate entry")) {
+                response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().println("<script>alert('Lỗi: Mã sinh viên hoặc Email đã tồn tại!'); history.back();</script>");
+            } else {
+                throw e;
+            }
+        }
     }
 
-    private void updateStudent(HttpServletRequest request, HttpServletResponse response)
+    private void updateStudent(HttpServletRequest request, HttpServletResponse response, String className)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String studentCode = request.getParameter("studentCode");
@@ -109,15 +138,24 @@ public class StudentServlet extends HttpServlet {
         String major = request.getParameter("major");
 
         Student student = new Student(id, studentCode, name, email, dob, major);
-        studentDAO.updateStudent(student);
-        response.sendRedirect("list");
+        student.setClassName(className);
+        try {
+            studentDAO.updateStudent(student);
+            response.sendRedirect("students");
+        } catch (SQLException e) {
+            if (e.getMessage() != null && e.getMessage().contains("Duplicate entry")) {
+                response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().println("<script>alert('Lỗi: Mã sinh viên hoặc Email đã tồn tại!'); history.back();</script>");
+            } else {
+                throw e;
+            }
+        }
     }
 
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        // Lấy mã ID để biết xóa đứa nào
         int id = Integer.parseInt(request.getParameter("id"));
         studentDAO.deleteStudent(id);
-        response.sendRedirect("list");
+        response.sendRedirect("students");
     }
 }
