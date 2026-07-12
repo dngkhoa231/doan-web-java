@@ -31,8 +31,7 @@ Website Quản lý Sinh viên hỗ trợ Giảng viên trong việc theo dõi, t
 Để dự án có thể chạy trơn tru trên máy, Thầy vui lòng thực hiện theo các bước sau:
 
 **Bước 1: Tải mã nguồn**
-## 5. Hướng dẫn cài đặt
-1. Clone project từ GitHub về máy: `git clone https://github.com/dngkhoa231/doan-web-java.git`
+1. Clone project từ GitHub về máy: `git clone https://github.com/dngkhoa231/Website-Quan-Ly-Sinh-Vien.git`
 2. Mở thư mục project bằng IDE (Visual Studio Code, Eclipse hoặc IntelliJ).
 3. Mở phần mềm quản lý MySQL (VD: XAMPP - phpMyAdmin), import file `database/database.sql` để tạo CSDL `student_management`.
 4. Nếu MySQL của bạn có cài mật khẩu, vui lòng cấu hình lại mật khẩu trong file `src/main/java/com/studentmvc/util/DBConnection.java`. (Mặc định tài khoản là `root`, mật khẩu để trống).
@@ -54,4 +53,6 @@ Website Quản lý Sinh viên hỗ trợ Giảng viên trong việc theo dõi, t
   - Mật khẩu: `123`
 
 ## 7. Video thuyết trình và demo
-- [Bạn dán link YouTube quay video thuyết trình của nhóm vào đây nhé]
+<video width="700" controls>
+  <source src="./video/InShot_20260712_220942356.mp4" type="video/mp4">
+</video>
