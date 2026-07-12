@@ -1,18 +1,19 @@
 package com.studentmvc.controller;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import com.studentmvc.util.DBConnection;
 import com.studentmvc.util.HashUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -43,6 +44,9 @@ public class LoginServlet extends HttpServlet {
 
         try (Connection conn = DBConnection.getConnection()) {
             // Kiểm tra Giảng viên trước
+
+
+            
             String sqlTeacher = "SELECT * FROM teachers WHERE teacher_code = ? AND password = ?";
             try (PreparedStatement ps = conn.prepareStatement(sqlTeacher)) {
                 ps.setString(1, username);
@@ -62,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             
-            // Nếu không phải GV, kiểm tra Sinh viên
+            // Nếu không phải GV  kiểm tra Sinh viên
             String sqlStudent = "SELECT * FROM students WHERE student_code = ? AND password = ?";
             try (PreparedStatement ps = conn.prepareStatement(sqlStudent)) {
                 ps.setString(1, username);

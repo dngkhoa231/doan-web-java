@@ -3,37 +3,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Đăng nhập hệ thống</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body style="font-family: Arial;">
+<body>
 
-<center>
-    <h2 style="color: blue;">ĐĂNG NHẬP</h2>
+<div class="container login-container">
+    <h2>ĐĂNG NHẬP</h2>
     
     <c:if test="${not empty error}">
-        <p style="color: red;"><b>${error}</b></p>
+        <div class="error-msg">${error}</div>
     </c:if>
 
     <form action="login" method="post">
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <td><b>Tài khoản:</b></td>
-                <td><input type="text" name="username" required></td>
-            </tr>
-            <tr>
-                <td><b>Mật khẩu:</b></td>
-                <td><input type="password" name="password" required></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Đăng nhập" style="padding: 5px 15px;">
-                </td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label for="username">Tài khoản:</label>
+            <input type="text" id="username" name="username" placeholder="Nhập mã sinh viên hoặc giáo viên" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">Đăng nhập ngay</button>
     </form>
     
-    <p><i>Mật khẩu mặc định: 123</i></p>
-</center>
+    <p style="text-align: center; margin-top: 25px; color: var(--text-muted); font-size: 13px;">
+        Mật khẩu mặc định: <b>123</b>
+    </p>
+</div>
 
 </body>
 </html>
