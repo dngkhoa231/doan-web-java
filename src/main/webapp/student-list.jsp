@@ -23,7 +23,9 @@
         
         <div class="header-action">
             <h2>Danh sách Sinh viên</h2>
-            <a href="new" class="btn btn-primary">Thêm mới</a>
+            <c:if test="${sessionScope.role == 'TEACHER'}">
+                <a href="new" class="btn btn-primary">Thêm mới</a>
+            </c:if>
         </div>
         
         <form action="students" method="GET" class="filter-form">
@@ -65,7 +67,9 @@
                             <td style="text-align: center;">
                                 <a href="edit?id=<c:out value='${student.id}' />" class="btn btn-primary" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;">Sửa</a>
                                 &nbsp;
-                                <a href="delete?id=<c:out value='${student.id}' />" class="btn btn-danger" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;" onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?');">Xóa</a>
+                                <c:if test="${sessionScope.role == 'TEACHER'}">
+                                    <a href="delete?id=<c:out value='${student.id}' />" class="btn btn-danger" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;" onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?');">Xóa</a>
+                                </c:if>
                             </td>
                         </tr>
                     </c:forEach>

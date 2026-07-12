@@ -45,6 +45,13 @@ public class StudentServlet extends HttpServlet {
         // Lấy cái đường dẫn người dùng gõ vào
         String action = request.getServletPath();
         
+        // Phân quyền: Ngăn sinh viên Thêm mới hoặc Xóa
+        if ("STUDENT".equals(role) && (action.equals("/new") || action.equals("/insert") || action.equals("/delete"))) {
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().println("<script>alert('Lỗi: Sinh viên không được phép Thêm mới hoặc Xóa!'); window.location.href='students';</script>");
+            return;
+        }
+        
         try {
             switch (action) {
                 case "/new":
