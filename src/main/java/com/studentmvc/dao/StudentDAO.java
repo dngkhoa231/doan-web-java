@@ -62,7 +62,7 @@ public class StudentDAO {
 
     public List<Student> selectAllStudentsByMajor(String majorCode) {
         List<Student> students = new ArrayList<>();
-        // Truy vấn lọc theo chuyên ngành
+
         String sql = "SELECT * FROM students WHERE major = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -144,7 +144,7 @@ public class StudentDAO {
 
     public boolean deleteStudent(int id) throws SQLException {
         boolean rowDeleted;
-        // Lệnh xóa sinh viên dứt điểm
+
         String sql = "DELETE FROM students WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

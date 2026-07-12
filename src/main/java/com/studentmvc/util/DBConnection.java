@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/student_management?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
     private static final String USER = "root";
-    private static final String PASSWORD = ""; // Cấu hình pass tuỳ máy bạn
+    private static final String PASSWORD = "";
 
     public static Connection getConnection() {
         Connection conn = null;

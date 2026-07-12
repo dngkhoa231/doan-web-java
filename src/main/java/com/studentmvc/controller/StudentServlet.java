@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-// Servlet này đóng vai trò làm Controller để điều hướng các thao tác Thêm, Sửa, Xóa
+
 @WebServlet({"/students", "/new", "/insert", "/delete", "/edit", "/update", "/list"})
 public class StudentServlet extends HttpServlet {
     private StudentDAO studentDAO;
@@ -28,11 +28,11 @@ public class StudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // Set tiếng Việt để tránh bị lỗi font chữ
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
-        // Kiểm tra xem đã đăng nhập chưa
+
         HttpSession session = request.getSession();
         String role = (String) session.getAttribute("role");
         String className = (String) session.getAttribute("className");
@@ -42,17 +42,17 @@ public class StudentServlet extends HttpServlet {
             return;
         }
 
-        // Lấy cái đường dẫn người dùng gõ vào
+
         String action = request.getServletPath();
         
-        // Phân quyền: Ngăn sinh viên Thêm mới
+
         if ("STUDENT".equals(role) && (action.equals("/new") || action.equals("/insert"))) {
             response.setContentType("text/html;charset=UTF-8");
             response.getWriter().println("<script>alert('Lỗi: Sinh viên không được phép Thêm mới!'); window.location.href='students';</script>");
             return;
         }
 
-        // Phân quyền nâng cao: Sinh viên chỉ được sửa hoặc xóa tài khoản của chính mình
+
         if ("STUDENT".equals(role) && (action.equals("/edit") || action.equals("/update") || action.equals("/delete"))) {
             String idParam = request.getParameter("id");
             if (idParam != null) {
@@ -100,12 +100,12 @@ public class StudentServlet extends HttpServlet {
         if (major != null && !major.isEmpty()) {
             listStudent = studentDAO.selectAllStudentsByMajor(major);
         } else {
-            // Lấy TOÀN BỘ sinh viên (như web cũ)
+
             listStudent = studentDAO.selectAllStudents();
         }
         
         request.setAttribute("listStudent", listStudent);
-        // Đẩy dữ liệu sang trang JSP để hiển thị
+
         request.getRequestDispatcher("student-list.jsp").forward(request, response);
     }
 
@@ -134,7 +134,7 @@ public class StudentServlet extends HttpServlet {
         double fee = (feeStr != null && !feeStr.isEmpty()) ? Double.parseDouble(feeStr) : 0;
         
         Student newStudent = new Student(studentCode, name, email, dob, major, fee);
-        // Tự động gán lớp cho sinh viên này bằng lớp hiện tại
+
         newStudent.setClassName(className);
         
         try {

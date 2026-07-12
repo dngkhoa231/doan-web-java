@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class Student {
     private int id;
-    private String studentCode; // Thêm Mã số sinh viên (MSSV)
+    private String studentCode;
     private String name;
     private String email;
     private Date dob;
     private String major;
     private String className;
     private String password;
-    private double fee; // Thêm học phí
+    private double fee;
 
     public Student() {}
 

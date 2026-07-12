@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String rawPassword = request.getParameter("password");
         
-        // Băm mật khẩu người dùng nhập vào để so với DB
+
         String password = HashUtil.hashPassword(rawPassword);
 
         System.out.println("=========================================");
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println("\nĐang thực hiện truy vấn...");
 
         try (Connection conn = DBConnection.getConnection()) {
-            // Kiểm tra Giảng viên trước
+
 
 
             
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             
-            // Nếu không phải GV  kiểm tra Sinh viên
+
             String sqlStudent = "SELECT * FROM students WHERE student_code = ? AND password = ?";
             try (PreparedStatement ps = conn.prepareStatement(sqlStudent)) {
                 ps.setString(1, username);
@@ -90,7 +90,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Nếu chạy đến đây là sai tài khoản hoặc pass
+
         request.setAttribute("error", "Sai tài khoản hoặc mật khẩu!");
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }

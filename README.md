@@ -46,7 +46,7 @@ Website Quản lý Sinh viên hỗ trợ Giảng viên trong việc theo dõi, t
 [👉 Click vào đây để xem ảnh minh họa](anhminhhoa.png)
 
 ## 6. Tài khoản demo
-- Admin (Giảng viên): Nguyễn Duy Tân  ( ưu tiên dùng cái này nhé Thầy vì full chắc năng ạ  )
+- Admin (Giảng viên): Lê Duy Tân  ( ưu tiên dùng cái này nhé Thầy vì full chắc năng ạ  )
   - Tài khoản: `GV001`
   - Mật khẩu: `123`
 - User (Sinh viên): ( chỉ xem và sửa thông tin của chính mình )
