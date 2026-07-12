@@ -53,6 +53,6 @@ Website Quản lý Sinh viên hỗ trợ Giảng viên trong việc theo dõi, t
   - Mật khẩu: `123`
 
 ## 7. Video thuyết trình và demo
-<video width="700" controls>
-  <source src="./video/InShot_20260712_220942356.mp4" type="video/mp4">
-</video>
+[![Video Thuyết Trình Demo](https://img.youtube.com/vi/u3KEQVRFaHc/0.jpg)](https://www.youtube.com/watch?v=u3KEQVRFaHc)
+
+> 💡 **Mẹo:** Nhấn vào ảnh trên để xem trực tiếp video demo ứng dụng trên YouTube.
