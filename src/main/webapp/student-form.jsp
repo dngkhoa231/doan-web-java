@@ -24,6 +24,11 @@
             </c:if>
 
             <div class="form-group">
+                <label for="studentCode">Mã số sinh viên (MSSV):</label>
+                <input type="text" id="studentCode" name="studentCode" value="<c:out value='${student.studentCode}' />" required>
+            </div>
+
+            <div class="form-group">
                 <label for="name">Họ và Tên:</label>
                 <input type="text" id="name" name="name" value="<c:out value='${student.name}' />" required>
             </div>

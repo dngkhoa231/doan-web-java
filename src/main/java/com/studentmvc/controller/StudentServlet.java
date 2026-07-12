@@ -86,13 +86,14 @@ public class StudentServlet extends HttpServlet {
     private void insertStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         // Lấy từng thông tin từ các ô input của form HTML
+        String studentCode = request.getParameter("studentCode");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String dobStr = request.getParameter("dob");
         Date dob = (dobStr != null && !dobStr.isEmpty()) ? Date.valueOf(dobStr) : null;
         String major = request.getParameter("major");
         
-        Student newStudent = new Student(name, email, dob, major);
+        Student newStudent = new Student(studentCode, name, email, dob, major);
         studentDAO.insertStudent(newStudent);
         response.sendRedirect("list");
     }
@@ -100,13 +101,14 @@ public class StudentServlet extends HttpServlet {
     private void updateStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        String studentCode = request.getParameter("studentCode");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String dobStr = request.getParameter("dob");
         Date dob = (dobStr != null && !dobStr.isEmpty()) ? Date.valueOf(dobStr) : null;
         String major = request.getParameter("major");
 
-        Student student = new Student(id, name, email, dob, major);
+        Student student = new Student(id, studentCode, name, email, dob, major);
         studentDAO.updateStudent(student);
         response.sendRedirect("list");
     }

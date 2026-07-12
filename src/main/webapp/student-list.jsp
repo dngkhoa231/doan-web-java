@@ -18,6 +18,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Mã SV</th>
                     <th>Họ và Tên</th>
                     <th>Email</th>
                     <th>Ngày Sinh</th>
@@ -29,6 +30,7 @@
                 <c:forEach var="student" items="${listStudent}">
                     <tr>
                         <td><c:out value="${student.id}" /></td>
+                        <td><c:out value="${student.studentCode}" /></td>
                         <td><c:out value="${student.name}" /></td>
                         <td><c:out value="${student.email}" /></td>
                         <td><c:out value="${student.dob}" /></td>
