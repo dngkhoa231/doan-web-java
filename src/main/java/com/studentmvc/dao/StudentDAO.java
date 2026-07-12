@@ -10,7 +10,9 @@ import java.util.List;
 public class StudentDAO {
 
     public List<Student> selectAllStudents() {
+        // Tạo cái danh sách rỗng để hứng dữ liệu
         List<Student> students = new ArrayList<>();
+        // Câu lệnh SQL lấy tất cả sinh viên từ bảng
         String sql = "SELECT * FROM students";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -51,6 +53,7 @@ public class StudentDAO {
     }
 
     public void insertStudent(Student student) throws SQLException {
+        // Câu lệnh chèn sinh viên mới vào Database
         String sql = "INSERT INTO students (name, email, dob, major) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -64,6 +67,7 @@ public class StudentDAO {
 
     public boolean updateStudent(Student student) throws SQLException {
         boolean rowUpdated;
+        // Cập nhật lại thông tin đứa sinh viên này dựa vào ID
         String sql = "UPDATE students SET name = ?, email = ?, dob = ?, major = ? WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -79,6 +83,7 @@ public class StudentDAO {
 
     public boolean deleteStudent(int id) throws SQLException {
         boolean rowDeleted;
+        // Lệnh xóa sinh viên dứt điểm
         String sql = "DELETE FROM students WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

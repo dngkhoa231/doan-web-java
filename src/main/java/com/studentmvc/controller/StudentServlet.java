@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+// Servlet này đóng vai trò làm Controller để điều hướng các thao tác Thêm, Sửa, Xóa
 @WebServlet({"/students", "/new", "/insert", "/delete", "/edit", "/update", "/list"})
 public class StudentServlet extends HttpServlet {
     private StudentDAO studentDAO;
@@ -27,9 +28,11 @@ public class StudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        // Set tiếng Việt để tránh bị lỗi font chữ
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // Lấy cái đường dẫn người dùng gõ vào
         String action = request.getServletPath();
         
         try {
@@ -60,8 +63,10 @@ public class StudentServlet extends HttpServlet {
 
     private void listStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+        // Lọi hết sinh viên từ DB ra
         List<Student> listStudent = studentDAO.selectAllStudents();
         request.setAttribute("listStudent", listStudent);
+        // Đẩy dữ liệu sang trang JSP để hiển thị
         request.getRequestDispatcher("student-list.jsp").forward(request, response);
     }
 
@@ -80,6 +85,7 @@ public class StudentServlet extends HttpServlet {
 
     private void insertStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+        // Lấy từng thông tin từ các ô input của form HTML
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String dobStr = request.getParameter("dob");
@@ -107,6 +113,7 @@ public class StudentServlet extends HttpServlet {
 
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+        // Lấy mã ID để biết xóa đứa nào
         int id = Integer.parseInt(request.getParameter("id"));
         studentDAO.deleteStudent(id);
         response.sendRedirect("list");
