@@ -45,11 +45,25 @@ public class StudentServlet extends HttpServlet {
         // Lấy cái đường dẫn người dùng gõ vào
         String action = request.getServletPath();
         
-        // Phân quyền: Ngăn sinh viên Thêm mới hoặc Xóa
-        if ("STUDENT".equals(role) && (action.equals("/new") || action.equals("/insert") || action.equals("/delete"))) {
+        // Phân quyền: Ngăn sinh viên Thêm mới
+        if ("STUDENT".equals(role) && (action.equals("/new") || action.equals("/insert"))) {
             response.setContentType("text/html;charset=UTF-8");
-            response.getWriter().println("<script>alert('Lỗi: Sinh viên không được phép Thêm mới hoặc Xóa!'); window.location.href='students';</script>");
+            response.getWriter().println("<script>alert('Lỗi: Sinh viên không được phép Thêm mới!'); window.location.href='students';</script>");
             return;
+        }
+
+        // Phân quyền nâng cao: Sinh viên chỉ được sửa hoặc xóa tài khoản của chính mình
+        if ("STUDENT".equals(role) && (action.equals("/edit") || action.equals("/update") || action.equals("/delete"))) {
+            String idParam = request.getParameter("id");
+            if (idParam != null) {
+                int requestStudentId = Integer.parseInt(idParam);
+                int loggedInStudentId = (Integer) session.getAttribute("studentId");
+                if (requestStudentId != loggedInStudentId) {
+                    response.setContentType("text/html;charset=UTF-8");
+                    response.getWriter().println("<script>alert('Lỗi: Bạn chỉ được phép sửa hoặc xóa tài khoản của chính mình!'); window.location.href='students';</script>");
+                    return;
+                }
+            }
         }
         
         try {

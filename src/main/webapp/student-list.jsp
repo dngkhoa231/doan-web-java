@@ -65,9 +65,11 @@
                             <td><c:out value="${student.fee}" /></td>
                             <td><c:out value="${student.className}" /></td>
                             <td style="text-align: center;">
-                                <a href="edit?id=<c:out value='${student.id}' />" class="btn btn-primary" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;">Sửa</a>
+                                <c:if test="${sessionScope.role == 'TEACHER' || (sessionScope.role == 'STUDENT' && sessionScope.studentId == student.id)}">
+                                    <a href="edit?id=<c:out value='${student.id}' />" class="btn btn-primary" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;">Sửa</a>
+                                </c:if>
                                 &nbsp;
-                                <c:if test="${sessionScope.role == 'TEACHER'}">
+                                <c:if test="${sessionScope.role == 'TEACHER' || (sessionScope.role == 'STUDENT' && sessionScope.studentId == student.id)}">
                                     <a href="delete?id=<c:out value='${student.id}' />" class="btn btn-danger" style="padding: 6px 14px; font-size: 13px; border-radius: 8px;" onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này khỏi hệ thống?');">Xóa</a>
                                 </c:if>
                             </td>

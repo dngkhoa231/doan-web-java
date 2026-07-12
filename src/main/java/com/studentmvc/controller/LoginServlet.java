@@ -80,6 +80,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("role", "STUDENT");
                         session.setAttribute("name", rs.getString("name"));
                         session.setAttribute("className", rs.getString("class_name"));
+                        session.setAttribute("studentId", rs.getInt("id"));
                         response.sendRedirect("students");
                         return;
                     }
